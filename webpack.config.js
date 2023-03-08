@@ -17,6 +17,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '/dist'),
     filename: 'bundle.js',
+    library: 'mylib',
   },
   devServer: {
     static: path.resolve(__dirname, './dist'),

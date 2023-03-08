@@ -1,7 +1,8 @@
 console.log("In index.js");
 console.log("Now using webpack");
 
-function pageSet(newPage) {
+export function pageSet(newPage) {
+    console.log("In pageSet()");
     let file = newPage;
 
     fetch (file)
@@ -10,6 +11,7 @@ function pageSet(newPage) {
 }
 
 function setPageOnClick() {
+    console.log("in setPageOnClick()");
     let list = document.getElementById('pagelist');
     console.log("list is: "+list+":");
     let listItems = list.getElementsByTagName('li');
@@ -17,15 +19,15 @@ function setPageOnClick() {
     [...listItems].forEach(element => {
         console.log("adding onclick for "+element.value+", innerHTML: "+element.innerHTML);
         if ("Setup" == element.innerHTML) {
-            element.setAttribute('onclick', "pageSet('setup.html')");
+            element.setAttribute('onclick', "mylib.pageSet('setup.html')");
         } else if ("New" == element.innerHTML) {
-            element.setAttribute('onclick', "pageSet('new.html')");
+            element.setAttribute('onclick', "mylib.pageSet('new.html')");
         } else if ("Webpack" == element.innerHTML) {
-            element.setAttribute('onclick', "pageSet('webpack.html')");
+            element.setAttribute('onclick', "mylib.pageSet('webpack.html')");
         } else if ("Babel" == element.innerHTML) {
-            element.setAttribute('onclick', "pageSet('babel.html')");
+            element.setAttribute('onclick', "mylib.pageSet('babel.html')");
         } else if ("Git" == element.innerHTML) {
-            element.setAttribute('onclick', "pageSet('git.html')");
+            element.setAttribute('onclick', "mylib.pageSet('git.html')");
         }
     });
 }
