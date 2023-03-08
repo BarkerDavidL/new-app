@@ -1,3 +1,183 @@
 <title>New Project</title>
 <h1>Welcome to my New Project</h1>
 <script src="./bundle.js"></script>
+<code>
+    one-time actions:
+    install:
+    - javascript
+    - node (get npm and npx with this)
+    - VS Code
+    - VS Code extensions for node, docker, ESLint, ?
+    - git
+    - Git Bash
+    - docker
+    
+    Get accounts on:
+    - github
+    - docker
+    
+    Config:
+    Node:
+    npm set init-author-name "<Your Name>"
+    npm set init-author-email "you@example.com"
+    npm set init-author-url "https://example.com"
+    npm set init-license "MIT"
+    
+    Steps for a new project
+    
+    > mkdir new-project-directory
+    > cd new-project-directory
+    > npm init -y
+    - uses defaults
+    - creates package.json, take a look and modify what you want
+    
+    > mkdir src
+    > create src/index.js
+    - put some javascript in there, such as console.log("In index.js");
+    run it (notice how we are staying in the project home, not cd'ing into src)
+    
+    > node src/index.js
+    
+    Now make this runnable by package.json. Add the "start" options to the existing scripts:
+    {
+      ...
+      "scripts": {
+        "start": "node src/index.js",
+        ...
+      },
+      ...
+    }
+    
+    Then run this with:
+    
+    > npm start
+    
+    Build a deployable website (html and JS) using Webpack
+    
+    At this point, if you are building a project that will be a user-facing front-end (i.e. a website), then you will want to package that project for deployment to a web server. Deployment means that we cut out all the development-only code (debuggers, libraries used to test and build stuff, etc) and to simplify and minimize the javascript (only deliver the libraries that you use, not everything installed on your development environment, combine all your javascript to one deployable js file). We are using webpack here, but you could use parcel or some other packaging tool.
+    
+    Create a distribution directory. Usually called 'dist' or 'build'
+    
+    > mkdir dist
+    > touch dist/index.html
+    
+    Edit dist/index.html and include only what you need (you no longer need to put all the <html>, <head> and <body> tags in an html file. They are assumed now.
+    
+    dist/index.html:
+    
+    <title>New Project</title>
+    <h1>Welcome to my New Project</h1>
+    <script src="./bundle.js"></script>
+    
+    - note that there is no file called "bundle.js". Webpack will create that from all your .js files in your project that are needed by your website.
+    
+    Install Webpack on your project
+    
+    You need to do this for each project. It copies the webpack modules into the node_modules directory (and creates the directory if it is not already there.) By using --save-dev, it will only using these modules during development. It will not put these modules into the deployable website because they are not used by your website and are not needed.
+    
+    > npm install --save-dev webpack webpack-dev-server webpack-cli
+    
+    - installs three modules for use only in development in node_modules/
+    - added one line for each package in the devDependencies section of package.json
+    
+    You will need to configure webpack to build your website, and then you'll need to update your start script.
+    
+    To run your new website in a development mode, change the 'start' script in package.json:
+    
+    In package.json:
+    
+    "start": "webpack serve --mode development",
+    
+    Add a new webpack.config.js file in the main directory of your project.
+    
+    webpack.config.js:
+    
+    const path = require('path');
+    
+    module.exports = {
+        entry: path.resolve(__dirname, './src/index.js'),
+        output: {
+            path: path.resolve(__dirname, '/dist'),
+            filename: 'bundle.js',
+        },
+        devServer: {
+            static: path.resolve(__dirname, './dist'),
+        },
+    }
+    
+    - uses path to better handle paths across different OSes
+    - points to your src/index.js script (in the future, other scripts go here)
+    - points to the output directory which already contains your html files
+    - specifies the bundle.js file that webpack will create from your js files. That will go in /dist
+    
+    Now you can run this on the command line:
+    
+    > npm start
+    
+    Or using VS Code's NPM Intellisense extension, chose NPM SCRIPTS->package.json->start run button
+    
+    In both cases, use your browser to go to the link: http://localhost:8080/
+    
+    Multi-Browser Support/Older Versions of Javascript
+    
+    Javascript is constantly introducing new features and deprecating old ones. Deploying a website that runs on most existing browsers would cause a huge amount of work, checks in code, and also limit your ability to use new features. Fortunately there is a solution to this. Use the latest features as you wish, then run your code through a 'transpiler' and deploy the output.
+    
+    A 'transpiler' is a compiler that takes one version of software and puts out another. In this case, the transpiler we will be using, 'babel', keeps up-to-date with what browsers/browser versions are in common use and transpiles code such that all those browsers/versions support the output code. And the way it works is by taking new JS features and re-writing them using older JS code that is commonly supported. Thus we write using new code and deploy old code. Babel takes care of everything else.
+    
+    Install Babel in your project
+    
+    > npm install --save-dev @babel/core @bable/preset-env
+    
+     - puts more stuff in node_modules
+     - adds more dependencies in package.json
+    
+    Since we are using webpack to bundle our JS application, we will also need the webpack loader for babel:
+    
+    > npm install --save-dev babel-loader
+    
+    Once babel and bable loader are installed, we have to update package.json and webpack.config.js to use them. First, in package.json add a "babel" section:
+    
+    {
+      ...
+      "babel": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      },
+      ...
+    }
+    
+    This change to webpack.config.js tells webpack to run your code through babel and use the transpiled outout JS:
+    
+      /* entry */
+      module: {
+        rules: [
+          {
+            test: /\.(js)$/,
+            exclude: /node_modules/,
+            use: ['babel-loader']
+          }
+        ]
+      },
+      resolve: {
+        extensions: ['*', '.js']
+      },
+      /* output */
+    
+    Source Code Control
+    
+    It's time to create a repository and save our work. We will create a local git repo, add our work, commit it, then push it up to github. From the root directory of our project:
+    > git init
+    > echo node_modules > .gitignore
+    > touch README.md
+    Add all the npm install commands into the README.md file since anyone cloning your repo will not get node_modules and thus will not be able to run your app until they install them.
+    
+    > git add package.json package-lock.json webpack.config.js dist/ src/ .gitignore README.md
+    > git commit -m "Initial Version"
+    
+    Now, go to github and create a repo with the same name as this project (RepoName), but leave it empty. Then set your local branch (assuming 'main', but might be 'master') to the remote origin at github.
+    
+    > git remote add origin git@github.com:UserName/RepoName.git 
+    > git push --set-upstream origin main
+    
+</code>
