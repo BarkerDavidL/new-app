@@ -1,0 +1,32 @@
+<h1>Steps for a new project</h1
+<pre>    
+> mkdir new-project-directory
+> cd new-project-directory
+> npm init -y
+- uses defaults
+- creates package.json, take a look and modify what you want
+
+> mkdir src
+> create src/index.js
+
+- put some javascript in there, such as console.log("In index.js");
+</pre>
+<p>Run it (notice how we are staying in the project home, not cd'ing into src)</p>
+<pre>
+> node src/index.js
+</pre>
+<p>Now make this runnable by package.json. Add the "start" options to the existing scripts:</p>
+<pre>
+{
+  ...
+  "scripts": {
+    "start": "node src/index.js",
+    ...
+  },
+  ...
+}
+</pre>
+<p>Then run this with:</p>
+<pre>
+> npm start
+</pre>

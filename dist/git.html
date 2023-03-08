@@ -1,0 +1,17 @@
+<h1>Source Code Control</h1>
+<p>It's time to create a repository and save our work. We will create a local git repo, add our work, commit it, then push it up to github. From the root directory of our project:</p>
+<pre>
+> git init
+> echo node_modules > .gitignore
+> touch README.md
+</pre>
+<p>Add all the npm install commands into the README.md file since anyone cloning your repo will not get node_modules and thus will not be able to run your app until they install them.</p>
+<pre>
+> git add package.json package-lock.json webpack.config.js dist/ src/ .gitignore README.md
+> git commit -m "Initial Version"
+</pre>
+<p>Now, go to github and create a repo with the same name as this project (RepoName), but leave it empty. Then set your local branch (assuming 'main', but might be 'master') to the remote origin at github.</p>
+<pre>
+> git remote add origin git@github.com:UserName/RepoName.git 
+> git push --set-upstream origin main
+</pre>
