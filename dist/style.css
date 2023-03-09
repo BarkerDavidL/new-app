@@ -36,7 +36,7 @@ body {
     grid-template-areas:
       "header header header header"
       "nav nav nav nav"
-      "sidebar . main main"
+      "main main main main"
       "footer footer footer footer";
 }
 
@@ -50,7 +50,7 @@ header {
     grid-area: header;
     display: grid;
     grid-template-columns: auto auto;
-    background: #eeeeee;
+    background: #ccbb44;
 }
 
 header h1 {
@@ -106,6 +106,7 @@ aside {
 
 main {
     grid-area: main;
+    background: #eeeeee;
 }
 
 footer {
