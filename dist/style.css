@@ -48,9 +48,9 @@ ul li {
 
 header {
     grid-area: header;
-    display: grid;
-    grid-template-columns: auto auto;
     background: #ccbb44;
+    background-image: url("./DrawingHands.jpg");
+    background-size: cover;
 }
 
 header h1 {
