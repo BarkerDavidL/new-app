@@ -80,7 +80,7 @@ nav ul {
 
 .menu-parent {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
 }
 
 .menu_title {
