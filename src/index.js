@@ -35,4 +35,5 @@ function setPageOnClick() {
 window.onload = () => {
     console.log("Window has loaded");
     setPageOnClick();
+    pageSet('setup.html');
 }

@@ -58,12 +58,12 @@ header h1 {
 }
 
 header a {
-    color: #3030c0;
+    color: #3080c0;
 }
 
 nav {
     grid-area: nav;
-    background: #a0c0e0;
+    background: #aaddcc;
 }
 
 nav ul {
@@ -115,3 +115,18 @@ footer {
     color: #eeeeee;
 }
 
+.console {
+    background: #203030;
+    color: #eeeeee;
+    margin: 0 50% 0 1%;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.editor {
+    background: #205060;
+    color: #eeeeee;
+    margin: 0 30% 0 1%;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
