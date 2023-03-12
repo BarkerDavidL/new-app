@@ -9,12 +9,22 @@
 
 .main-menu-parent {
     display: grid;
+    grid-template-columns: [first] auto [line2] 30%;
     justify-content: space-between;
 }
 
 .menu-parent {
     display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
     gap: 10px;
+}
+
+.menu_title {
+    display: inline;
+}
+
+.menu_icon {
+    display: none;
 }
 
 html, body {
@@ -38,7 +48,6 @@ body {
       "nav nav nav nav"
       "main main main main"
       "footer footer footer footer";
-    position: relative;
 }
 
 
@@ -73,24 +82,6 @@ nav ul {
     margin: .3em;
 }
 
-.main-menu-parent {
-    display: grid;
-    grid-template-columns: [first] auto [line2] 30%;
-    justify-content: space-between;
-}
-
-.menu-parent {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-}
-
-.menu_title {
-    display: inline;
-}
-
-.menu_icon {
-    display: none;
-}
 
 nav li a {
     text-decoration: none;
@@ -105,24 +96,22 @@ aside {
     background: #c0e0c0;
 }
 
-main {
+.main {
     grid-area: main;
+    position: relative;
     background: #eeeeee;
 }
 
-#current-page {
-    position: absolute;
-}
-#current-page::after {
+main::after {
     content: "";
     position: absolute;
-    background: url("./bookstack.jpg");
+    background-image: url("./bookstack.jpg");
     background-size: cover;
     opacity: 0.1;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
     z-index: -1;
 }
 
