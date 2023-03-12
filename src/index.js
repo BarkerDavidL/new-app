@@ -18,11 +18,30 @@ export function pageSet(newPage) {
 window.onload = () => {
     console.log("Window has loaded");
 
+    const pages = [
+        { label: "Setup", page: "setup.html"},
+        { label: "New", page: "new.html"},
+        { label: "Webpack", page: "webpack.html"},
+        { label: "Babel", page: "babel.html"},
+        { label: "Git", page: "git.html"},
+        { label: "React", page: "react.html"},
+    ];
+    
+    const site_menu = [
+        { label: "About", page: "about.html"},
+        { label: "Settings", page: "settings.html"},
+    ];
+
     ReactDOM.render(
-        <MainMenu />,
-        document.getElementById('main-menu')
+        <MainMenu menuItems={pages} />,
+        document.getElementById('page-menu')
     );
 
+    ReactDOM.render(
+        <MainMenu menuItems={site_menu} />,
+        document.getElementById('site-menu')
+    );
+    
     /* setPageOnClick(); */
     pageSet('setup.html');
 
