@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import MainMenu from './MainMenu';
 
 console.log("In index.js");
-console.log("Now using webpack");
 
 export function pageSet(newPage) {
     console.log("In pageSet()");
@@ -34,12 +33,12 @@ window.onload = () => {
 
     ReactDOM.render(
         <MainMenu menuItems={pages} />,
-        document.getElementById('page-menu')
+        document.getElementById('js-page-menu')
     );
 
     ReactDOM.render(
         <MainMenu menuItems={site_menu} />,
-        document.getElementById('site-menu')
+        document.getElementById('js-site-menu')
     );
     
     /* setPageOnClick(); */

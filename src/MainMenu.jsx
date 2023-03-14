@@ -12,6 +12,6 @@ function MenuItems({items}) {
 export default function MainMenu({menuItems}) {
     
     return (
-      <ul id="pagelist" className="menu-parent"><MenuItems items={menuItems} /></ul>
+      <ul className="menu-parent"><MenuItems items={menuItems} /></ul>
     );
 }
