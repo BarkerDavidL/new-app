@@ -1,4 +1,15 @@
-
+:root {
+    --header-bg-color: #ccbb44;
+    --nav-bg-color: #aaddcc;
+    --aside-bg-color: #c0e0c0;
+    --footer-bg-color: #bbaa55;
+    --heading-font-color: #303030;
+    --heading-link-color: #3080c0;
+    --nav-hover-bg-color: #f5f5e0; /* beige */
+    --console-bg-color: #203030;
+    --editor-bg-color: #205060;
+    --darkbg-text-color: #eeeeee;
+}
 * {
     box-sizing: border-box;
 }
@@ -9,7 +20,7 @@ html, body {
 }
 
 body {
-    color: #303030;
+    color: var(--heading-font-color);
     font-family: Arial, sans-serif;
     font-size: 90%;
     font-weight: normal;
@@ -28,33 +39,33 @@ body {
 
 header {
     grid-area: header;
-    background: #ccbb44;
+    background: var(--header-bg-color);
     background-image: url("./DrawingHands.jpg");
     background-size: cover;
 }
 
 header h1 {
-    color: #303030;
+    color: var(--heading-font-color);
 }
 
 header a {
-    color: #3080c0;
+    color: var(--heading-link-color);
 }
 
 nav {
     grid-area: nav;
-    background: #aaddcc;
+    background: var(--nav-bg-color);
 }
 
 aside {
     grid-area sidebar;
-    background: #c0e0c0;
+    background: var(--aside-bg-color);
 }
 
-main {
+.main {
     grid-area: main;
     position: relative;
-    background: #eeeeee;
+    background: var(--darkbg-text-color);
 }
 
 main::after {
@@ -72,8 +83,8 @@ main::after {
 
 footer {
     grid-area: footer;
-    background: #bbaa55;
-    color: #eeeeee;
+    background: var(--footer-bg-color);
+    color: var(--darkbg-text-color);
 }
 
 /**********************************\
@@ -100,7 +111,7 @@ footer {
 }
 
 .menu-parent li:hover {
-    background: beige;
+    background: var(--nav-hover-bg-color);
 }
 
 .menu_title {
@@ -112,16 +123,16 @@ footer {
 }
 
 .console {
-    background: #203030;
-    color: #eeeeee;
+    background: var(--console-bg-color);
+    color: var(--darkbg-text-color);
     margin: 0 50% 0 1%;
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .editor {
-    background: #205060;
-    color: #eeeeee;
+    background: var(--editor-bg-color);
+    color: var(--darkbg-text-color);
     margin: 0 30% 0 1%;
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
