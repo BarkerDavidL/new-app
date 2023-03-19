@@ -2,8 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import MainMenu from './MainMenu';
+import App from "./App"
 
 console.log("In index.js");
+
+function showUserReg(file) {
+    if ("user.html" == file) {
+        ReactDOM.render(
+            <App />,
+            document.getElementById('user-registration-form')
+        );    
+    }
+}
 
 export function pageSet(newPage) {
     console.log("In pageSet()");
@@ -11,7 +21,8 @@ export function pageSet(newPage) {
 
     fetch (file)
         .then(response => response.text())
-        .then(responseText => document.getElementById("current-page").innerHTML = responseText);
+        .then(responseText => document.getElementById("current-page").innerHTML = responseText)
+        .then(showUserReg(file));
 }
 
 window.onload = () => {
@@ -28,6 +39,7 @@ window.onload = () => {
     
     const site_menu = [
         { label: "About", page: "about.html"},
+        { label: "User", page: "user.html"},
         { label: "Settings", page: "settings.html"},
     ];
 
@@ -43,7 +55,6 @@ window.onload = () => {
     
     /* setPageOnClick(); */
     pageSet('setup.html');
-
 
 }
 

@@ -1,0 +1,47 @@
+.app {
+    display: flex;
+    text-align: center;
+    background-color: var(--aside-bg-color);
+  }
+   
+  .label{
+    font-size: larger;
+    padding: 5px;
+  }
+   
+  .input{
+    font-size: larger;
+    padding: 5px;
+    margin: 2px;
+  }
+  
+  .btn{
+    color: var(--button-text-color);
+    background-color: var(--button-bg-color);
+    border-radius: 5px;
+    font-size: larger;
+    padding: 5px;
+    margin: 10px auto;
+  }
+   
+  .messages{
+    display: flex;
+    justify-content: center;
+  }
+   
+  .error{
+    background-color: var(--error-bg-color);
+    color: var(--message-text-color);
+    width: fit-content;
+    height: 50px;
+    padding: 5px;
+    font-size: 10px;
+  }
+   
+  .success{
+    background-color: var(--message-bg-color);
+    width: fit-content;
+    height: 50px;
+    padding: 5px;
+    font-size: 10px;
+  }
