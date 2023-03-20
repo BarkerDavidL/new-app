@@ -1,0 +1,65 @@
+import React from 'react';
+
+export default function Babel() {
+    return (
+      <>
+<h1>Multi-Browser Support/Older Versions of Javascript</h1>
+<p>Javascript is constantly introducing new features and deprecating old ones.
+   Deploying a website that runs on most existing browsers would cause a huge amount of work, 
+   checks in code, and also limit your ability to use new features. Fortunately there is a solution 
+   to this. Use the latest features as you wish, then run your code through a 'transpiler' and deploy 
+   the output. A 'transpiler' is a compiler that takes one version of software and puts out another.
+   In this case, the transpiler we will be using, 'babel', keeps up-to-date with what browsers/browser
+   versions are in common use and transpiles code such that all those browsers/versions support the
+   output code. And the way it works is by taking new JS features and re-writing them using older
+   JS code that is commonly supported. Thus we write using new code and deploy old code. Babel takes
+   care of everything else.</p>
+<h2>Install Babel in your project</h2>
+<pre className="console">
+&gt: npm install --save-dev @babel/core @babel/preset-env
+</pre>
+<ul>
+  <li>Puts more stuff in node_modules</li>
+  <li>Adds more dependencies in package.json</li>
+</ul>
+<p>Since we are using webpack to bundle our JS application, we will also need the webpack loader for babel:</p>
+<pre className="console">
+&gt; npm install --save-dev babel-loader
+</pre>
+<h2>Update the NPM and Webpack configurations</h2>
+<p>Once babel and babel loader are installed, we have to update package.json and webpack.config.js to
+   use them. First, in package.json add a "babel" section:</p>
+<h3>package.json</h3>
+<pre className="editor">
+{`
+  ...
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  ...
+`}
+</pre>
+<p>This change to webpack.config.js tells webpack to run your code through babel and use the transpiled
+   outout JS:</p>
+<h3>webpack.config.js</h3>
+<pre className="editor">{`
+  /* entry */
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['*', '.js']
+  },
+  /* output */`}
+</pre>
+      </>
+      );
+    }

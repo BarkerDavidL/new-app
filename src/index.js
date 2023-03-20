@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 
 import MainMenu from './MainMenu';
-import App from "./App"
+
+import Setup from "./Setup"
+import New from "./New"
+import Webpack from "./Webpack"
+import Babel from "./Babel"
+import Git from "./Git"
+import Reactpage from "./Reactpage"
+import About from "./About"
+import User from "./User"
+import Settings from "./Settings"
 
 console.log("In index.js");
+
+
+let htmlMap = {
+    "setup.html": Setup,
+    "new.html": New,
+    "webpack.html": Webpack,
+    "babel.html": Babel,
+    "git.html": Git,
+    "react.html": Reactpage,
+    "about.html": About,
+    "user.html": User,
+    "settings.html": Settings,
+}
 
 function showUserReg(file) {
     if ("user.html" == file) {
         ReactDOM.render(
-            <App />,
+            <User />,
             document.getElementById('user-registration-form')
         );    
     }
@@ -17,12 +39,13 @@ function showUserReg(file) {
 
 export function pageSet(newPage) {
     console.log("In pageSet()");
-    let file = newPage;
+    let page = htmlMap[newPage];
+    console.log("Load: " + page);
 
-    fetch (file)
-        .then(response => response.text())
-        .then(responseText => document.getElementById("current-page").innerHTML = responseText)
-        .then(showUserReg(file));
+    ReactDOM.render(
+        createElement(page, {}),
+        document.getElementById('current-page')
+    );
 }
 
 window.onload = () => {

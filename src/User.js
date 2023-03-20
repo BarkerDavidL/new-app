@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 
 import RegistrationForm from "./RegistrationForm"
  
-function App() {
+function User() {
   return (
-    <div className="App">
+    <div className="User">
       <RegistrationForm />
     </div>
      
   );
 }
  
-export default App;
+export default User;
